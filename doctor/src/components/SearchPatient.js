@@ -1,7 +1,9 @@
 import React from 'react';
 import {View} from 'react-native';
-import axios from 'axios';
 import { SearchBar, List, ListItem } from 'react-native-elements';
+
+import axios from 'axios';
+import _ from 'lodash';
 
 export default class SearchPatient extends React.Component{
 	static navigationOptions = { 
@@ -13,15 +15,15 @@ export default class SearchPatient extends React.Component{
 		this.state = {
 			patientsList:[
 				{
-					first_name: 'Som',
-					last_name: 'Wang',
+					first_name: 'Wasin',
+					last_name: 'Saengow',
 					email: 'som@gmail.com',
 					password: 'somsom',
 					avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
 					date: '20 Aug 2017'
 				},
 				{
-					first_name: 'Chris Jackson',
+					first_name: 'Wasin',
 					avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
 					date: '20 Aug 2017'
 				},
@@ -29,17 +31,7 @@ export default class SearchPatient extends React.Component{
 					first_name: 'Chris Jackson',
 					avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
 					date: '20 Aug 2017'
-				},
-				{
-					first_name: 'Chris Jackson',
-					avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-					date: '20 Aug 2017'
-				},
-				{
-					first_name: 'Chris Jackson',
-					avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-					date: '20 Aug 2017'
-				},
+				}
 			],
 			activePatientsList:[]
 		}
@@ -53,15 +45,15 @@ export default class SearchPatient extends React.Component{
 	}
 
 	onPressButton({ first_name, last_name, email, password }){
-		alert('Please Scan Smart Bracelet');
-		axios.post('http://10.21.240.151:3001/api/assign/patient',{
-			first_name,
-			last_name,
-			email,
-			password
-		}).then((res)=>{
-			alert('Add successful');
-		})
+		// alert('Please Scan Smart Bracelet');
+		// axios.post('http://10.21.240.151:3001/api/assign/patient',{
+		// 	first_name,
+		// 	last_name,
+		// 	email,
+		// 	password
+		// }).then((res)=>{
+		// 	alert('Add successful');
+		// })
 		
 	}
 
