@@ -32,12 +32,12 @@ import RfidRegister from './src/components/RfidRegister';
 //   </View>
 // );
 
-const IOTapp = ()=>(
+const Doctorino = ()=>(
 	<App/>
 	// <Home/>
 	// <RfidRegister/>
 );
 
-export default IOTapp;
+export default Doctorino;
 
-AppRegistry.registerComponent('IOTapp', () => IOTapp);
+AppRegistry.registerComponent('Doctorino', () => Doctorino);

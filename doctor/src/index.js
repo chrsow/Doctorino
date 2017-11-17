@@ -15,6 +15,7 @@ import { StackNavigator } from 'react-navigation';
 
 import Home from './components/Home';
 import RfidRegister from './components/RfidRegister';
+import Login from './components/Login';
 // import User from './components/User';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -67,7 +68,8 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 // );
 
 const App = StackNavigator({
-	RfidRegister:{screen: RfidRegister},
+	// RfidRegister:{screen: RfidRegister},
+	Login: {screen: Login},
 	Home:{screen: Home}
 },{
 	headerMode: 'screen'	
