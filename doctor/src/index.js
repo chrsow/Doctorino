@@ -14,7 +14,7 @@ import {
 import { StackNavigator } from 'react-navigation';
 
 import Home from './components/Home';
-import RfidRegister from './components/RfidRegister';
+// import RfidRegister from './components/RfidRegister';
 import Login from './components/Login';
 // import User from './components/User';
 

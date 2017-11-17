@@ -84,7 +84,7 @@ export default class Login extends React.Component{
 		)
 	}
 
-	renderRfidRegisterForm(){
+	renderLoginForm(){
 		return(
 			<View>
 				<FormLabel>First name</FormLabel>
@@ -121,11 +121,11 @@ export default class Login extends React.Component{
 						source={require('../assets/img/logo.jpg')}
 					/> */}
 					<Icon color="white" name="local-hospital" size={62} type="material" />
-					<Text style={styles.heading}>DocCon Register</Text>
+					<Text style={styles.heading}>Doctorino</Text>
 				</View>
 				
 				{this.state.loading ? 
-					this.renderLoading():this.renderRfidRegisterForm()}
+					this.renderLoading():this.renderLoginForm()}
 			</ScrollView>
 		); 
 	}	

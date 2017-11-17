@@ -16,9 +16,10 @@ export default class Profile extends React.Component{
 	render(){
 		return(
 			<View style={styles.container}>
-				<Image source={{uri:'https://static.comicvine.com/uploads/scale_small/11/113509/5180123-5280792940-latest'}}
+				{/* <Image source={{uri:'https://static.comicvine.com/uploads/scale_small/11/113509/5180123-5280792940-latest'}}					style={styles.image}/> */}
+				<Image source={require('../assets/img/Boss.jpg')}
 					style={styles.image}/>
-				<Text style={styles.name}>Doctor Strange</Text>
+				<Text style={styles.name}>Dr. Varitthorn Sutthisopa-arporn</Text>
 				<Divider style={styles.divider} />
 				<Text style={styles.info}> Doctor ID: 844be0057b3db7e8</Text>
 				<Text style={styles.info}> Doctor Type: Heart doctor</Text>

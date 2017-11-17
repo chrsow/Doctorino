@@ -25,6 +25,8 @@ export default class Home extends React.Component {
 		this.state = {
 			selectedTab: 'patients',
 		}
+
+		this.changeTab = this.changeTab.bind(this);
 	}
 
 	changeTab (selectedTab) {
@@ -59,7 +61,7 @@ export default class Home extends React.Component {
 					title={selectedTab === 'patients' ? 'PATIENTS' : null}
 					renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center', marginTop: 12}} color={'#5e6977'} name='people' size={33} />}
 					renderSelectedIcon={() => <Icon color={'#6296f9'} name='people' size={30} />}
-					onPress={() => this.changeTab('patients')}>
+					onPress={this.changeTab('patients')}>
 					<Patient />
 				</Tab>
 				<Tab
@@ -69,7 +71,7 @@ export default class Home extends React.Component {
 					title={selectedTab === 'profile' ? 'PROFILE' : null}
 					renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center', marginTop: 12}} color={'#5e6977'} name='person' size={33} />}
 					renderSelectedIcon={() => <Icon color={'#6296f9'} name='person' size={30} />}
-					onPress={() => this.changeTab('profile')}>
+					onPress={this.changeTab('profile')}>
 					<Profile />
 				</Tab>
 			</Tabs>
