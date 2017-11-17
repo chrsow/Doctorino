@@ -1,6 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import { SearchBar, List, ListItem } from 'react-native-elements';
+import patientList from '../patients'
 
 import axios from 'axios';
 import _ from 'lodash';
@@ -13,65 +14,39 @@ export default class SearchPatient extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			patientsList:[
-				{
-					first_name: 'Wasin',
-					last_name: 'Saengow',
-					email: 'som@gmail.com',
-					password: 'somsom',
-					avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-					date: '20 Aug 2017'
-				},
-				{
-					first_name: 'Wasin',
-					avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-					date: '20 Aug 2017'
-				},
-				{
-					first_name: 'Chris Jackson',
-					avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-					date: '20 Aug 2017'
-				}
-			],
-			activePatientsList:[]
+			filteredPatientList: patientList 
 		}
 	}
-	componentWillMount(){
-		this.setState({activePatientsList:this.state.patientsList});
+
+	onSearchTextChange = (e) => {
+		const patients = _.filter(patientList, patient => {
+			if (_.includes(patient.name, e.target.value) || _.includes(patient.name, e.target.value) || _.includes(patient.name, e.target.value)) {
+				return true
+			}
+			return false
+		})
+		this.setState({ filteredPatientList: patients })
 	}
 
-	onSearchTextChange(){
-		
-	}
-
-	onPressButton({ first_name, last_name, email, password }){
-		// alert('Please Scan Smart Bracelet');
-		// axios.post('http://10.21.240.151:3001/api/assign/patient',{
-		// 	first_name,
-		// 	last_name,
-		// 	email,
-		// 	password
-		// }).then((res)=>{
-		// 	alert('Add successful');
-		// })
+	onPressButton = ({ first_name, last_name, email, password }) => {
 		
 	}
 
 	renderPatientsList(){
-		const patientsList = this.state.activePatientsList;
+		const patients = this.state.filteredPatientList;
 
 		return(
 			<List containerStyle={{marginBottom: 20}}>
 				{
-					patientsList.map((l, i) => (
+					patients.map((patient, i) => (
 						<ListItem
 							button
-							onPress={()=>this.onPressButton(l)}
+							onPress={this.onPressButton(patient)}
 							roundAvatar
-							avatar={{uri:l.avatar_url}}
+							avatar={{uri:patient.avatar_url}}
 							key={i}
-							title={l.first_name}
-							subtitle={l.date}
+							title={patient.first_name}
+							subtitle={patient.date}
 							rightIcon={{name: 'add'}}
 						/>
 					))
