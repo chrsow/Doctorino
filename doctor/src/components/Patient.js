@@ -12,8 +12,12 @@ class Patient extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			patientsList: []
+			patientList: []
 		}
+	}
+
+	onClick = (patient) => {
+		this.setState({ patientList: _.concat(patientList, patient)})
 	}
 
 	renderPatientList(){
@@ -26,7 +30,7 @@ class Patient extends React.Component{
 					}/>
 				<List containerStyle={{marginBottom: 20}}>
 					{
-						this.state.patientsList.map((l, i) => (
+						this.state.patientList.map((l, i) => (
 							<ListItem
 								roundAvatar
 								avatar={{uri:l.avatar_url}}
