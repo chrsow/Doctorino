@@ -16,6 +16,7 @@ import { StackNavigator } from 'react-navigation';
 import Home from './components/Home';
 import Login from './components/Login';
 import reducers from './reducers/index'
+import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
