@@ -15,14 +15,15 @@ import { StackNavigator } from 'react-navigation';
 
 import Home from './components/Home';
 import Login from './components/Login';
-import reducers from './reducers/index'
-import { Provider } from 'react-redux'
-import thunkMiddleware from 'redux-thunk'
-import { createStore, applyMiddleware } from 'redux'
-const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
+// import reducers from './reducers/index'
+// import { Provider } from 'react-redux'
+// import thunkMiddleware from 'redux-thunk'
+// import { createStore, applyMiddleware } from 'redux'
+// const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
-const store = createStoreWithMiddleware(reducers);
+
+// const store = createStoreWithMiddleware(reducers);
 
 const AppNavigator = StackNavigator({
 	// RfidRegister:{screen: RfidRegister},
@@ -35,9 +36,10 @@ const AppNavigator = StackNavigator({
 class App extends React.Component {
   render() {
     return (
-      <Provider store={store}>
-        <AppNavigator />
-      </Provider>
+      // <Provider store={store}>
+      //   <AppNavigator />
+			// </Provider>
+			<AppNavigator/>
     );
   }
 }

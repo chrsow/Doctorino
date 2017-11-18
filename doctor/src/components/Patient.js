@@ -5,6 +5,8 @@ import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import firebase from '../firebase';
+
 import SearchPatient from './SearchPatient';
 import PatientDetail from './PatientDetail';
 
@@ -13,13 +15,36 @@ class Patient extends React.Component{
 
 	constructor(props){
 		super(props);
+		console.log(this.props.selectedPatients);
 		this.state = {
+			// patientList: this.props.selectedPatients
 			patientList: []
 		}
 	}
 
+	componentDidMount(){
+		const patients = firebase.database().ref('patients');
+		patients.on('value',snapshot => {
+			let patientList = snapshot.val();
+			console.log(patientList);
+			let newPatientList = [];
+			for (let patient in patientList) {
+				console.log(patientList[patient]);
+				newPatientList.push({
+					avatar_url: patientList[patient].avatar_url,
+					first_name: patientList[patient].first_name
+				});
+			}
+
+			this.setState({patientList: newPatientList});
+		});
+
+		
+	}
+
 	renderPatientList(){
 		const {navigate} = this.props.navigation;
+		
 		return(
 			<View>
 				<CheckBox center title="Add Patient" uncheckedIcon="plus" 
@@ -31,12 +56,12 @@ class Patient extends React.Component{
 						this.state.patientList.map((l, i) => (
 							<ListItem
 								roundAvatar
-								avatar={{uri:l.avatar_url}}
+								avatar={{uri:l.avatar_url	}}
 								key={i}
-								title={l.name}
+								title={l.first_name}
 								onPress={()=>{
 										navigate('PatientDetail',{
-											name:l.name,
+											name:l.first_name,
 											avatar_url:l.avatar_url
 										})
 									}
@@ -66,8 +91,9 @@ const PatientStack = StackNavigator({
 
 function mapStateToProps(state) {
 	return {
-		filteredPatients: state.filteredPatients
+		selectedPatients: state.selectedPatients
 	}
 }
 
-export default connect(mapStateToProps)(PatientStack);
+// export default connect(mapStateToProps, null)(PatientStack);
+export default PatientStack;

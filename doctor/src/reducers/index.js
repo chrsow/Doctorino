@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import filteredPatients from './filteredPatients'
+import selectedPatients from './selectedPatients'
 
 const rootReducer = combineReducers({
-  filteredPatients
+  selectedPatients: selectedPatients || []
 })
 
 export default rootReducer

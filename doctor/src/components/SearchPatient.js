@@ -4,6 +4,7 @@ import { SearchBar, List, ListItem } from 'react-native-elements';
 import patientList from '../patients'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import firebase from '../firebase';
 
 import axios from 'axios';
 import _ from 'lodash';
@@ -21,25 +22,34 @@ class SearchPatient extends React.Component{
 	}
 
 	onSearchTextChange = (e) => {
+		console.log(e.length, patientList)
+		if(e.length === 0) {
+			this.setState({ filteredPatientList: patientList })
+			return ;
+		}
 		const patients = _.filter(patientList, patient => {
-			if (_.includes(patient.name, e.target.value) || _.includes(patient.name, e.target.value) || _.includes(patient.name, e.target.value)) {
-				return true
-			}
-			return false
+			console.log(patient)
+			return (_.includes(patient.first_name.toLowerCase(), e.toLowerCase()) || _.includes(patient.last_name.toLowerCase(), e.toLowerCase()))
 		})
 		this.setState({ filteredPatientList: patients })
 	}
 
-	onPressButton = ({ first_name, last_name, avatar_url, date }) => {
-		this.props.dispatch({
-			type: 'ADD_PATIENT',
-			data: {
-				first_name,
-				last_name,
-				avatar_url,
-				date
-			}
-		})
+	// onPressButton = ({ first_name, last_name, avatar_url, date }) => {
+	onPressButton = (patient) => {
+		const patients = firebase.database().ref('patients');
+		const newPatient = patient;
+		patients.push(newPatient);
+		console.log('Added to firebase :)');
+		// this.props.dispatch({
+		// 	type: 'ADD_PATIENT',
+		// 	data: {
+		// 		first_name,
+		// 		last_name,
+		// 		avatar_url,
+		// 		date
+		// 	}
+		// })
+
 	}
 
 	renderPatientsList(){
@@ -71,7 +81,7 @@ class SearchPatient extends React.Component{
 				<SearchBar
 					lightTheme	
 					round
-					onChangeText={()=>this.onSearchTextChange()}
+					onChangeText={this.onSearchTextChange}
 					placeholder='Search' />
 					{this.renderPatientsList()}
 			</View>
