@@ -13,11 +13,7 @@ import fonts from 'HSFonts';
 console.disableYellowBox = true;
 
 export default class Home extends React.Component {
-	// static navigationOptions = {
-	// 	header: {
-	// 		// visible: false
-	// 	}
-	// };
+
 	static navigationOptions = { header: null };
 	
 	constructor() {
@@ -31,28 +27,13 @@ export default class Home extends React.Component {
 
 	changeTab (selectedTab) {
 		this.setState({selectedTab})
-	}	
+	}
 
   render() {
 		const { navigate } = this.props.navigation;
 		const { selectedTab } = this.state
 
     return (
-      // <ScrollView>
-      //   <View style={styles.hero}>
-      //     <Icon color="white" name="whatshot" size={62} type="material" />
-      //     <Text style={styles.heading}>RFID Register</Text>
-      //   </View>
-      //   <Button
-      //     buttonStyle={styles.button}
-      //     backgroundColor={socialColors.facebook}
-      //     icon={{ name: 'account', type: 'material-community' }}
-      //     onPress={() =>
-      //       navigation.navigate('RfidRegister')}
-      //     title="Register"
-      //   />
-			// 	{/* <FormValidationMessage>Error message</FormValidationMessage> */}
-			// </ScrollView>
 			<Tabs>
 				<Tab
 					titleStyle={{fontWeight: 'bold', fontSize: 10}}
@@ -79,13 +60,6 @@ export default class Home extends React.Component {
 	}
 
 }
-
-// const HomeStack = StackNavigator({
-// 	Home:{screen:Home},
-// 	SearchPatient:{screen:SearchPatient}
-// });
-
-// export default HomeStack;
 
 const styles = StyleSheet.create({
   heading: {

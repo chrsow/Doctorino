@@ -1,6 +1,6 @@
 import patients from '../patients'
 
-export default funtion (state = [], action) {
+export default function (state = [], action) {
   switch(action.type) {
     case ADD_PATIENT:
       return [...state, action.data]

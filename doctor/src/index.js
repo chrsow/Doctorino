@@ -17,6 +17,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import reducers from './reducers/index'
 import thunkMiddleware from 'redux-thunk'
+import { createStore, applyMiddleware } from 'redux'
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -27,7 +28,7 @@ const AppNavigator = StackNavigator({
 	Login: {screen: Login},
 	Home:{screen: Home}
 },{
-	headerMode: 'screen'	
+	headerMode: 'screen'
 });
 
 class App extends React.Component {
