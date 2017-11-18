@@ -2,6 +2,8 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import { List, ListItem, CheckBox} from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import SearchPatient from './SearchPatient';
 import PatientDetail from './PatientDetail';
@@ -14,10 +16,6 @@ class Patient extends React.Component{
 		this.state = {
 			patientList: []
 		}
-	}
-
-	onClick = (patient) => {
-		this.setState({ patientList: _.concat(patientList, patient)})
 	}
 
 	renderPatientList(){
@@ -66,4 +64,10 @@ const PatientStack = StackNavigator({
 	PatientDetail:{screen:PatientDetail}
 });
 
-export default PatientStack;
+function mapStateToProps(state) {
+	return {
+		filteredPatients: state.filteredPatients
+	}
+}
+
+export default connect(mapStateToProps)(PatientStack);

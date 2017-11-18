@@ -2,11 +2,13 @@ import React from 'react';
 import {View} from 'react-native';
 import { SearchBar, List, ListItem } from 'react-native-elements';
 import patientList from '../patients'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import axios from 'axios';
 import _ from 'lodash';
 
-export default class SearchPatient extends React.Component{
+class SearchPatient extends React.Component{
 	static navigationOptions = { 
 		title: 'Search for Patient',
 	};
@@ -28,8 +30,16 @@ export default class SearchPatient extends React.Component{
 		this.setState({ filteredPatientList: patients })
 	}
 
-	onPressButton = ({ first_name, last_name, email, password }) => {
-		
+	onPressButton = ({ first_name, last_name, avatar_url, date }) => {
+		this.props.dispatch({
+			type: 'ADD_PATIENT',
+			data: {
+				first_name,
+				last_name,
+				avatar_url,
+				date
+			}
+		})
 	}
 
 	renderPatientsList(){
@@ -68,3 +78,5 @@ export default class SearchPatient extends React.Component{
 		);
 	}
 }
+
+export default connect()(SearchPatient);
