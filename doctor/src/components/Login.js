@@ -22,9 +22,10 @@ export default class Login extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
+			username:'',
+			password: '',
 			first_name:'',
 			last_name:'',
-			password: '',
 			loading: false,
 			doctor_id: '',
 			email: '',
@@ -87,7 +88,7 @@ export default class Login extends React.Component{
 	renderLoginForm(){
 		return(
 			<View>
-				<FormLabel>First name</FormLabel>
+				{/* <FormLabel>First name</FormLabel>
 				<FormInput onChangeText={(first_name)=>this.setState({first_name})}/>
 				<FormLabel>Surname</FormLabel>
 				<FormInput onChangeText={(last_name)=>this.setState({last_name})}/>
@@ -98,12 +99,16 @@ export default class Login extends React.Component{
 				<FormLabel>Doctor ID</FormLabel>
 				<FormInput onChangeText={(doctor_id)=>this.setState({doctor_id})}/>
 				<FormLabel>Validation Code</FormLabel>
-				<FormInput onChangeText={(validation_code)=>this.setState({validation_code})}/>
+				<FormInput onChangeText={(validation_code)=>this.setState({validation_code})}/> */}
+				<FormLabel>Username</FormLabel>
+				<FormInput onChangeText={ username =>this.setState({username})}/>
+				<FormLabel>Password</FormLabel>
+				<FormInput onChangeText={ password =>this.setState({password})}/>
 				<Button
 					buttonStyle={styles.button}
 					backgroundColor={socialColors.facebook}
 					icon={{ name: 'account', type: 'material-community' }}
-					onPress={() => this.onSubmitButton()}
+					onPress={this.onSubmitButton}
 					title="Login"
 				/>
 				
