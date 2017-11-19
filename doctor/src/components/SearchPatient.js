@@ -60,7 +60,11 @@ class SearchPatient extends React.Component{
 
 	onSearchTextChange = (e) => {
 		const patientList = _.filter(this.state.patientList, patient => {
-			return !(_.includes(this.state.patientsInCareList, patient))
+			const names = []
+			for(let i=0; i<this.state.patientList.length; i++) {
+				names.concat(this.state.patientList[i].first_name + this.state.patientList[i].lastname)
+			}
+			return !(_.includes(names, patient.first_name + patient.last_name))
 		})
 		console.log('XX', patientList, 'YY', this.state.patientsInCareList)
 		if (e.length === 0) {
