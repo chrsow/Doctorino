@@ -68,7 +68,7 @@ class Patient extends React.Component{
 								roundAvatar
 								avatar={{uri:l.avatar_url	}}
 								key={i}
-								title={l.first_name}
+								title={`${l.first_name} ${l.last_name}`}
 								onPress={()=>{
 										navigate('PatientDetail',{
 											name:l.first_name,
