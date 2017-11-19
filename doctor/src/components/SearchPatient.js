@@ -20,7 +20,8 @@ class SearchPatient extends React.Component{
 		this.state = {
 			patients,
 			patientList: [],
-			filteredPatientList: []
+			filteredPatientList: [],
+			patientsInCareList: [] 
 		}
 	}
 
@@ -39,23 +40,28 @@ class SearchPatient extends React.Component{
 				});
 			}
 
-			this.setState({patientList: newPatientList},()=>{
-				this.setState({filteredPatientList:this.state.patientList});
-			});
+			this.setState({ patientList: newPatientList, filteredPatientList: newPatientList });
 		});
+		const patientsInCare = firebase.database().ref('patientsInCare')
+		patientsInCare.on('value', snapshot => {
+			let patientList = snapshot.val();
+			this.setState({ patientsInCareList: patientList })
+		})
 	}
 
 	onSearchTextChange = (e) => {
-		const patientList = this.state.patientList;
-		if(e.length === 0) {
-			this.setState({ filteredPatientList: patientList })
-			return ;
-		}
-		const filteredPatientList = _.filter(patientList, patient => {
-			console.log(patient);
-			return (_.includes(patient.first_name.toLowerCase(), e.toLowerCase()) || _.includes(patient.last_name.toLowerCase(), e.toLowerCase()))
+		const patientList = _.filter(this.state.patientList, patient => {
+			return !(_.includes(this.state.patientsInCareList, patient))
 		})
-		this.setState({ filteredPatientList })
+		if (e.length === 0) {
+			this.setState({ filteredPatientList: patientList })
+		} else {
+			const filteredPatientList = _.filter(patientList, patient => {
+				console.log(patient);
+				return (_.includes(patient.first_name.toLowerCase(), e.toLowerCase()) || _.includes(patient.last_name.toLowerCase(), e.toLowerCase()))
+			})
+			this.setState({ filteredPatientList })
+		}
 	}
 
 	// onPressButton = ({ first_name, last_name, avatar_url, date }) => {
