@@ -117,14 +117,15 @@ export default class PatientDetail extends React.Component{
 		const patient = firebase.database().ref('/patients/1');
 		patient.on('value',snapshot => {
 			const {heart_rate} = snapshot.val();
-			this.setState({patientHeartrate:this.state.patientHeartrate.push(heart_rate)});
+			this.setState({patientHeartrate:[...this.state.patientHeartrate,heart_rate]});
 		});
 	}
 
 	renderHeartRate(){
-		return this.state.patientHeartrate.map(heart_rate=>{
+		this.state.patientHeartrate.map((heart_rate,i)=>{
+			console.log(heart_rate);
 			return(
-				<Text>Heart rate: {heart_rate}</Text>	
+				<Text key={i}>Heart rate: {heart_rate}</Text>	
 			);
 		});
 	}
@@ -141,14 +142,22 @@ export default class PatientDetail extends React.Component{
 						<Image source={{uri:params.avatar_url}}
 							style={styles.image}/>
 						<Text style={styles.name}>{params.first_name} {params.last_name}</Text>
+						{/* {this.renderHeartRate} */}
+						{
+							this.state.patientHeartrate.map((heart_rate,i)=>{
+								console.log(heart_rate);
+								return(
+									<Text key={i}>Heart rate: {heart_rate}</Text>	
+								);
+							})
+						}
 					</View>
-					<Text>{params.heart_rate}</Text>
 					{/* <Text style={styles.info}>Age: 55</Text> */}
 					{/* <Text style={styles.info}>Disease: Heart Disease</Text>
 					<Text style={styles.info}>Admited Date: 20 Aug 2017</Text>
 					<Text style={styles.topic}>Sleep rate</Text> */}
 					{/* <GraphSleep/> */}
-					{this.renderHeartRate}
+					
 					{/* <Text style={styles.topic}>Heart rate</Text> */}
 					{/* <Icon size={24} name="heart"/> */}
 					{/* <Text>111 BPM</Text> */}
