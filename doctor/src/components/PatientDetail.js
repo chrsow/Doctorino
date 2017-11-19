@@ -88,19 +88,22 @@ export default class PatientDetail extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			patientDetailList:[
-				{
-					topic: 'Sleep',
-					img_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-					navigate: 'PatientDetailSleep'
-					// subtitle: 'Vice President'
-				},
-				{
-					topic: 'Heart Rate',
-					img_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-					navigate: 'PatientDetailHeart'
-					// subtitle: 'Vice Chairman'
-				}
+			// patientDetailList:[
+			// 	{
+			// 		topic: 'Sleep',
+			// 		img_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+			// 		navigate: 'PatientDetailSleep'
+			// 		// subtitle: 'Vice President'
+			// 	},
+			// 	{
+			// 		topic: 'Heart Rate',
+			// 		img_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+			// 		navigate: 'PatientDetailHeart'
+			// 		// subtitle: 'Vice Chairman'
+			// 	}
+			// ]
+			patientDetail:[
+
 			]
 		};
 	}
@@ -123,11 +126,11 @@ export default class PatientDetail extends React.Component{
 						<Text style={styles.name}>{params.name}</Text>
 					</View>
 					<Text style={styles.info}>Age: 55</Text>
-					<Text style={styles.info}>Disease: Heart Disease</Text>
+					{/* <Text style={styles.info}>Disease: Heart Disease</Text>
 					<Text style={styles.info}>Admited Date: 20 Aug 2017</Text>
-					<Text style={styles.topic}>Sleep rate</Text>
+					<Text style={styles.topic}>Sleep rate</Text> */}
 					<GraphSleep/>
-					<Text style={styles.topic}>Heart rate</Text>
+					{/* <Text style={styles.topic}>Heart rate</Text> */}
 					{/* <Icon size={24} name="heart"/> */}
 					<Text>111 BPM</Text>
 					{/* <SmoothLine data={data} options={options} xKey='x' yKey='y' /> */}

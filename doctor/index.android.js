@@ -15,16 +15,16 @@ import { DrawerNavigator, DrawerItems } from 'react-navigation';
 
 import App from './src';
 import Home from './src/components/Home';
-import RfidRegister from './src/components/RfidRegister';
+// import RfidRegister from './src/components/RfidRegister';
 
-import reducers from './src/reducers/index'
-import { Provider } from 'react-redux'
-import thunkMiddleware from 'redux-thunk'
-import { createStore, applyMiddleware } from 'redux'
-const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
+// import reducers from './src/reducers/index'
+// import { Provider } from 'react-redux'
+// import thunkMiddleware from 'redux-thunk'
+// import { createStore, applyMiddleware } from 'redux'
+// const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 
-// const SCREEN_WIDTH = Dimensions.get('window').width;
-const store = createStoreWithMiddleware(reducers);
+// // const SCREEN_WIDTH = Dimensions.get('window').width;
+// const store = createStoreWithMiddleware(reducers);
 
 // const CustomDrawerContentComponent = props => (
 //   <View style={{ flex: 1, backgroundColor: '#43484d' }}>
@@ -42,9 +42,10 @@ const store = createStoreWithMiddleware(reducers);
 // );
 
 const Doctorino = ()=>(
-	<Provider store={store}>
-		<App/>
-	</Provider>
+	// <Provider store={store}>
+	// 	<App/>
+	// </Provider>
+	<App/>
 	// <Home/>
 	// <RfidRegister/>
 );

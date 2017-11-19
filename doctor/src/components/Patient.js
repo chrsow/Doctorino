@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Alert} from 'react-native';
 import { List, ListItem, CheckBox} from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux'
@@ -23,23 +23,33 @@ class Patient extends React.Component{
 	}
 
 	componentDidMount(){
-		const patients = firebase.database().ref('patients');
-		patients.on('value',snapshot => {
-			let patientList = snapshot.val();
-			console.log(patientList);
+		const patientsInCare = firebase.database().ref('patientsInCare');
+		patientsInCare.on('value',snapshot => {
+			let patientInCareList = snapshot.val();
 			let newPatientList = [];
-			for (let patient in patientList) {
-				console.log(patientList[patient]);
+			for (let patient in patientInCareList) {
 				newPatientList.push({
-					avatar_url: patientList[patient].avatar_url,
-					first_name: patientList[patient].first_name
+					avatar_url: patientInCareList[patient].avatar_url,
+					first_name: patientInCareList[patient].first_name
 				});
 			}
-
 			this.setState({patientList: newPatientList});
 		});
 
-		
+		const HeartRate = firebase.database().ref('patients/1/heartrate');
+		HeartRate.on('value',snapshot=>{
+			let heartrate = snapshot.val();
+			if(parseInt(heartrate)>100){
+				Alert.alert(
+					'Warning',
+					'His heart rate is ' + heartrate,
+					[
+						{text:'Call emergency', onPress:()=>{}}
+					]
+				);
+			}
+		});
+
 	}
 
 	renderPatientList(){
