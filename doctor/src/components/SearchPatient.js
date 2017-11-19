@@ -62,6 +62,7 @@ class SearchPatient extends React.Component{
 		const patientList = _.filter(this.state.patientList, patient => {
 			return !(_.includes(this.state.patientsInCareList, patient))
 		})
+		console.log('XX', patientList, 'YY', this.state.patientsInCareList)
 		if (e.length === 0) {
 			this.setState({ filteredPatientList: patientList })
 		} else {
