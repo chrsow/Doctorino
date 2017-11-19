@@ -30,7 +30,8 @@ class Patient extends React.Component{
 			for (let patient in patientInCareList) {
 				newPatientList.push({
 					avatar_url: patientInCareList[patient].avatar_url,
-					first_name: patientInCareList[patient].first_name
+					first_name: patientInCareList[patient].first_name,
+					last_name: patientInCareList[patient].last_name
 				});
 			}
 			this.setState({patientList: newPatientList});
@@ -71,7 +72,8 @@ class Patient extends React.Component{
 								title={`${l.first_name} ${l.last_name}`}
 								onPress={()=>{
 										navigate('PatientDetail',{
-											name:l.first_name,
+											first_name:l.first_name,
+											last_name:l.last_name,
 											avatar_url:l.avatar_url
 										})
 									}

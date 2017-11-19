@@ -123,7 +123,7 @@ export default class PatientDetail extends React.Component{
 					<View style={styles.body}>
 						<Image source={{uri:params.avatar_url}}
 							style={styles.image}/>
-						<Text style={styles.name}>{params.name}</Text>
+						<Text style={styles.name}>{params.first_name} {params.last_name}</Text>
 					</View>
 					<Text style={styles.info}>Age: 55</Text>
 					{/* <Text style={styles.info}>Disease: Heart Disease</Text>
