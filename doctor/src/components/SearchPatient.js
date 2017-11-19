@@ -36,7 +36,8 @@ class SearchPatient extends React.Component{
 				newPatientList.push({
 					avatar_url: patientList[patient].avatar_url,
 					first_name: patientList[patient].first_name,
-					last_name: patientList[patient].last_name
+					last_name: patientList[patient].last_name,
+					heart_rate: patientList[patient].heart_rate
 				});
 			}
 
@@ -51,17 +52,19 @@ class SearchPatient extends React.Component{
 				newPatientList.push({
 					avatar_url: patientList[patient].avatar_url,
 					first_name: patientList[patient].first_name,
-					last_name: patientList[patient].last_name
+					last_name: patientList[patient].last_name,
+					heart_rate: patientList[patient].heart_rate
 				});
 			}
 			this.setState({ patientsInCareList: newPatientList })
+			this.onSearchTextChange()
 		})
 	}
 
-	onSearchTextChange = (e) => {
+	onSearchTextChange = (e = '') => {
 		const names = []
 		for (let i = 0; i < this.state.patientsInCareList.length; i++) {
-			_.concat(names, this.state.patientsInCareList[i].first_name + this.state.patientsInCareList[i].last_name)
+			names.push(this.state.patientsInCareList[i].first_name + this.state.patientsInCareList[i].last_name)
 		}
 		const patientList = _.filter(this.state.patientList, patient => {
 			

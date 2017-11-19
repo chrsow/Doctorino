@@ -3,6 +3,7 @@ import {View, ScrollView,Text, Image, StyleSheet, List, ListItem} from 'react-na
 import { StackNavigator } from 'react-navigation';
 import {Icon} from 'react-native-elements';
 import {SmoothLine, Bar} from 'react-native-pathjs-charts';
+import firebase from '../firebase';
 
 // import PatientDetailTab from './PatientDetailTab';
 import PatientDetailSleep from './patientdetail/PatientDetailSleep';
@@ -79,7 +80,7 @@ const GraphSleep = ()=>{
 
   return (
     <View>
-      <Bar data={data} options={options} accessorKey='v'/>
+      {/* <Bar data={data} options={options} accessorKey='v'/> */}
     </View>
   )
 }
@@ -102,19 +103,35 @@ export default class PatientDetail extends React.Component{
 			// 		// subtitle: 'Vice Chairman'
 			// 	}
 			// ]
-			patientDetail:[
-
-			]
+			patientHeartrate:[]
 		};
+
+		this.renderHeartRate = this.renderHeartRate.bind(this);
 	}
 	static navigationOptions = { 
 		title: 'Patient Detail'
 	};
 
+	componentDidMount(){
+		// const heartRate = firebase.database().ref('patientsInCare');
+		const patient = firebase.database().ref('/patients/1');
+		patient.on('value',snapshot => {
+			const {heart_rate} = snapshot.val();
+			this.setState({patientHeartrate:this.state.patientHeartrate.push(heart_rate)});
+		});
+	}
+
+	renderHeartRate(){
+		return this.state.patientHeartrate.map(heart_rate=>{
+			return(
+				<Text>Heart rate: {heart_rate}</Text>	
+			);
+		});
+	}
+
 	render(){
 		const {navigation: {state: {params}}} = this.props;
 		const {navigate} = this.props.navigation;
-		
 	
 		return(
 			<View style={styles.container}>
@@ -125,14 +142,16 @@ export default class PatientDetail extends React.Component{
 							style={styles.image}/>
 						<Text style={styles.name}>{params.first_name} {params.last_name}</Text>
 					</View>
-					<Text style={styles.info}>Age: 55</Text>
+					<Text>{params.heart_rate}</Text>
+					{/* <Text style={styles.info}>Age: 55</Text> */}
 					{/* <Text style={styles.info}>Disease: Heart Disease</Text>
 					<Text style={styles.info}>Admited Date: 20 Aug 2017</Text>
 					<Text style={styles.topic}>Sleep rate</Text> */}
-					<GraphSleep/>
+					{/* <GraphSleep/> */}
+					{this.renderHeartRate}
 					{/* <Text style={styles.topic}>Heart rate</Text> */}
 					{/* <Icon size={24} name="heart"/> */}
-					<Text>111 BPM</Text>
+					{/* <Text>111 BPM</Text> */}
 					{/* <SmoothLine data={data} options={options} xKey='x' yKey='y' /> */}
 					{/* <SmoothLine data={data} options={options} xKey='x' yKey='y' /> */}
 					{/* <PatientDetailTab/> */}

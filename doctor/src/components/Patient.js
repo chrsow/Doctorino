@@ -31,19 +31,22 @@ class Patient extends React.Component{
 				newPatientList.push({
 					avatar_url: patientInCareList[patient].avatar_url,
 					first_name: patientInCareList[patient].first_name,
-					last_name: patientInCareList[patient].last_name
+					last_name: patientInCareList[patient].last_name,
+					heart_rate: patientInCareList[patient].heart_rate
 				});
 			}
+			console.log(newPatientList)
 			this.setState({patientList: newPatientList});
+			// this.setState({patientList: patientInCareList});
 		});
 
-		const HeartRate = firebase.database().ref('patients/1/heartrate');
+		const HeartRate = firebase.database().ref('patients/1');
 		HeartRate.on('value',snapshot=>{
-			let heartrate = snapshot.val();
-			if(parseInt(heartrate)>100){
+			const {first_name, last_name, heart_rate} = snapshot.val();
+			if(parseInt(heart_rate)>100){
 				Alert.alert(
 					'Warning',
-					'His heart rate is ' + heartrate,
+					`${first_name} ${last_name}'s heart rate is ${heart_rate}`,
 					[
 						{text:'Call emergency', onPress:()=>{}}
 					]
@@ -64,17 +67,19 @@ class Patient extends React.Component{
 					}/>
 				<List containerStyle={{marginBottom: 20}}>
 					{
-						this.state.patientList.map((l, i) => (
+						this.state.patientList.map((patientInCare, i) => (
 							<ListItem
 								roundAvatar
-								avatar={{uri:l.avatar_url	}}
+								avatar={{uri:patientInCare.avatar_url	}}
 								key={i}
-								title={`${l.first_name} ${l.last_name}`}
+								title={`${patientInCare.first_name} ${patientInCare.last_name}`}
+								// rightTitle={`Heart rate: ${patientInCare.heart_rate}`}
 								onPress={()=>{
 										navigate('PatientDetail',{
-											first_name:l.first_name,
-											last_name:l.last_name,
-											avatar_url:l.avatar_url
+											first_name:patientInCare.first_name,
+											last_name:patientInCare.last_name,
+											avatar_url:patientInCare.avatar_url,
+											heart_rate:patientInCare.heart_rate
 										})
 									}
 								}
