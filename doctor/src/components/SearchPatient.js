@@ -45,7 +45,16 @@ class SearchPatient extends React.Component{
 		const patientsInCare = firebase.database().ref('patientsInCare')
 		patientsInCare.on('value', snapshot => {
 			let patientList = snapshot.val();
-			this.setState({ patientsInCareList: patientList })
+			let newPatientList = [];
+			for (let patient in patientList) {
+				console.log(patientList[patient]);
+				newPatientList.push({
+					avatar_url: patientList[patient].avatar_url,
+					first_name: patientList[patient].first_name,
+					last_name: patientList[patient].last_name
+				});
+			}
+			this.setState({ patientsInCareList: newPatientList })
 		})
 	}
 
