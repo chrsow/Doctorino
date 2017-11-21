@@ -63,6 +63,7 @@ class SearchPatient extends React.Component{
 
 	onSearchTextChange = (e = '') => {
 		const names = []
+		if(this.state.)
 		for (let i = 0; i < this.state.patientsInCareList.length; i++) {
 			names.push(this.state.patientsInCareList[i].first_name + this.state.patientsInCareList[i].last_name)
 		}
