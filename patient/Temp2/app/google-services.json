@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "867391168206",
+    "firebase_url": "https://doctorino-2f707.firebaseio.com",
+    "project_id": "doctorino-2f707",
+    "storage_bucket": "doctorino-2f707.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:867391168206:android:aa64ed27ffe3df7a",
+        "android_client_info": {
+          "package_name": "com.example.tt.heartrate2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "867391168206-6msvefbmmp72sn5irchnnd825ugrkho5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tt.heartrate2",
+            "certificate_hash": "41bd73398b4d02456a7a46963d15bb804d846027"
+          }
+        },
+        {
+          "client_id": "867391168206-6s6fhqu6lakh84tepgfph550fbdg1ua2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuByfS2EERVB9DMuIXbZjLYpnR7o5A0kE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "867391168206-6s6fhqu6lakh84tepgfph550fbdg1ua2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
